@@ -9,6 +9,7 @@ import TaskContainer from './components/task/TaskContainer.tsx';
 import './App.css';
 
 const App = () => {
+    
   const [tasks, setTasks] = useState<Array<Task>>([]);
   const remainingTasks = tasks.filter((elem) => !elem.completed);
   const completedTasks = tasks.filter((elem) => elem.completed);
