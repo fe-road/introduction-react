@@ -1,11 +1,11 @@
 .task-label,
 .task-input-label {
-    font-family: 'Montserrat';
-    margin-top: 16px;
-    margin-bottom: 0;
+  font-family: 'Montserrat';
+  margin-top: 16px;
+  margin-bottom: 0;
 }
 
 .input-error {
-    border-color: red;
-    outline-color: red;
+  border-color: red;
+  outline-color: red;
 }

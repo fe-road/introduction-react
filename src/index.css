@@ -1,27 +1,28 @@
-html, body {
-    height: 100vh;
-    margin: 0;
-    padding: 0;
-    font-family: 'Montserrat', sans-serif;
-    background-color: #fafafa;
-    color: #222;
+html,
+body {
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+  font-family: 'Montserrat', sans-serif;
+  background-color: #fafafa;
+  color: #222;
 }
 
 .button {
-    font-family: 'Montserrat', sans-serif;
-    letter-spacing: 0;
-    padding: 4px;
-    margin: 0 8px 0 0;
-    border-radius: 4px;   
-    border: none;
-    box-shadow: 2px 2px 2px #ddd;
+  font-family: 'Montserrat', sans-serif;
+  letter-spacing: 0;
+  padding: 4px;
+  margin: 0 8px 0 0;
+  border-radius: 4px;
+  border: none;
+  box-shadow: 2px 2px 2px #ddd;
 }
 
 .button.small {
-    font-size: 10px;
+  font-size: 10px;
 }
 
 .button.icon {
-    width: 20px;
-    height: 20px;
+  width: 20px;
+  height: 20px;
 }
