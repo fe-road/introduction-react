@@ -1,6 +1,10 @@
-function Title() {
+interface Props {
+    text: string;
+}
+
+const Title = ({ text }: Props) => {
     return (
-        <h1>Hello World!</h1>
+        <h4>{text}</h4>
     );
 }
 
