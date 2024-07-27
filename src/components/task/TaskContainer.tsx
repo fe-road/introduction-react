@@ -4,10 +4,11 @@ import TaskList from './TaskList';
 
 interface Props {
     items: Array<Task>;
+    hideAddButtons?: boolean;
     setTasks: React.Dispatch<React.SetStateAction<Task[]>>;
 }
 
-const TaskContainer = ({ items, setTasks }: Props) => {
+const TaskContainer = ({ items, hideAddButtons = false, setTasks }: Props) => {
     const getNewTaskId = (index = 0) => `task_${new Date().getTime()}_${index}`;
 
     const addItem = (amount = 1): void => {
@@ -16,16 +17,15 @@ const TaskContainer = ({ items, setTasks }: Props) => {
             newItems.push({
                 id: getNewTaskId(i),
                 label: 'New Task',
+                completed: false,
             });
         }
         setTasks((currentList) => [...currentList, ...newItems]);
     };
 
-    const removeItem = (amount = 1): void => {
+    const removeItem = (id: string): void => {
         setTasks((currentList) => {
-            const newList = [...currentList];
-            newList.splice(0, amount);
-            return newList;
+            return currentList.filter((elem) => elem.id !== id);
         });
     };
 
@@ -34,7 +34,28 @@ const TaskContainer = ({ items, setTasks }: Props) => {
             const newList = [...currentList];
             const index = newList.findIndex((elem) => elem.id === id);
             if (index !== -1) {
-                newList.splice(index, 1, { id: getNewTaskId(), label: newLabel });
+                const newItem = {
+                    id: getNewTaskId(),
+                    label: newLabel,
+                    completed: newList[index].completed,
+                };
+                newList.splice(index, 1, newItem);
+            }
+            return newList;
+        });
+    };
+
+    const updateItemStatus = (id: string, newStatus: boolean): void => {
+        setTasks((currentList) => {
+            const newList = [...currentList];
+            const index = newList.findIndex((elem) => elem.id === id);
+            if (index !== -1) {
+                const newItem = {
+                    id: getNewTaskId(),
+                    label: newList[index].label,
+                    completed: newStatus,
+                };
+                newList.splice(index, 1, newItem);
             }
             return newList;
         });
@@ -46,10 +67,16 @@ const TaskContainer = ({ items, setTasks }: Props) => {
                 items={items}
                 remove={removeItem}
                 updateLabel={updateItemLabel}
+                updateStatus={updateItemStatus}
             />
 
-            <button onClick={() => addItem(1)}>Add task</button>
-            <button onClick={() => addItem(5)}>Add 5 tasks</button>
+            {hideAddButtons
+                ? null 
+                : <>
+                    <button className='button' onClick={() => addItem(1)}>Add task</button>
+                    <button className='button' onClick={() => addItem(5)}>Add 5 tasks</button>
+                </>
+            }
         </>
     );
 }

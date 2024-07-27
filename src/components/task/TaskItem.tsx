@@ -6,11 +6,12 @@ import './task-item.css';
 
 interface Props {
     item: Task;
-    remove: (amount: number) => void;
+    remove: (id: string) => void;
     updateLabel: (id: string, newLabel: string) => void;
+    updateStatus: (id: string, newStatus: boolean) => void;
 }
 
-const TaskItem = ({ item, remove, updateLabel }: Props) => {
+const TaskItem = ({ item, remove, updateLabel, updateStatus }: Props) => {
     const [label, setLabel] = useState(item.label);
     const [isEditing, setIsEditing] = useState(false);
 
@@ -21,7 +22,7 @@ const TaskItem = ({ item, remove, updateLabel }: Props) => {
     const cancelEdit = (): void => {
         setIsEditing(false);
         setLabel(item.label);
-    }
+    };
 
     const changeLabel = (event: React.ChangeEvent<HTMLInputElement>): void => {
         setLabel(event.target.value);
@@ -38,23 +39,33 @@ const TaskItem = ({ item, remove, updateLabel }: Props) => {
                     <div>
                         <input
                             type='text'
-                            className={!label ? 'input-error' : ''}
+                            className={`task-input-label ${!label ? 'input-error' : ''}`}
                             value={label}
                             onChange={changeLabel}
                         />
                     </div>
-                    <button 
+                    <button
+                        className='button small icon'
                         disabled={!label}
                         onClick={save}
                     >
-                        Save
+                        <span className='fa-solid fa-check'></span>
                     </button>
-                    <button onClick={cancelEdit}>Cancel</button>
-                    <button onClick={() => remove(1)}>Delete</button>
+                    <button className='button small icon' onClick={cancelEdit}>
+                        <span className='fa-solid fa-xmark'></span>
+                    </button>
+                    <button className='button small icon' onClick={() => remove(item.id)}>
+                        <span className='fa-solid fa-trash'></span>
+                    </button>
                 </>
                 : <>
-                    <p>{item.label}</p>
-                    <button onClick={startEdit}>Edit</button>
+                    <p className='task-label'>{item.label}</p>
+                    <button className='button small icon' onClick={startEdit}>
+                        <span className='fa-solid fa-pencil'></span>
+                    </button>
+                    <button className='button small icon' onClick={() => updateStatus(item.id, !item.completed)}>
+                        <span className={`fa-solid ${item.completed ? 'fa-delete-left' : 'fa-check'}`}></span>
+                    </button>
                 </>
             }
         </li>

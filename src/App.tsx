@@ -10,17 +10,28 @@ import './App.css';
 
 const App = () => {
     const [tasks, setTasks] = useState<Array<Task>>([]);
+    const remainingTasks = tasks.filter((elem) => !elem.completed);
+    const completedTasks = tasks.filter((elem) => elem.completed);
 
     return (
-        <>
-            {tasks.length > 0 && <Header text='Task List' />}
-            <Card title={tasks.length ? `Remaining Tasks: ${tasks.length}` : 'No tasks! Good job!'}>
-                <TaskContainer 
-                    items={tasks}
+        <div className='main-container'>
+            <Header text='Task List' />
+            <Card title={remainingTasks.length ? `Remaining Tasks: ${remainingTasks.length}` : 'No tasks! Good job!'}>
+                <TaskContainer
+                    items={remainingTasks}
                     setTasks={setTasks}
                 />
             </Card>
-        </>
+            {completedTasks.length > 0 && (
+                <Card title={completedTasks.length ? `Completed Tasks: ${completedTasks.length}` : ''}>
+                    <TaskContainer
+                        hideAddButtons
+                        items={completedTasks}
+                        setTasks={setTasks}
+                    />
+                </Card>
+            )}
+        </div>
     )
 }
 

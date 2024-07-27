@@ -5,11 +5,12 @@ import TaskItem from './TaskItem';
 interface Props {
     items: Array<Task>;
     maxAmountToDisplay?: number;
-    remove: (amount: number) => void;
+    remove: (id: string) => void;
     updateLabel: (id: string, newLabel: string) => void;
+    updateStatus: (id: string, newStatus: boolean) => void;
 }
 
-const TaskList = ({ items, remove, updateLabel, maxAmountToDisplay = 5 }: Props) => {
+const TaskList = ({ items, remove, updateLabel, updateStatus, maxAmountToDisplay = 5 }: Props) => {
     const hiddenTasksNumber = items.length - maxAmountToDisplay;
 
     return (
@@ -20,6 +21,7 @@ const TaskList = ({ items, remove, updateLabel, maxAmountToDisplay = 5 }: Props)
                     item={elem}
                     remove={remove}
                     updateLabel={updateLabel}
+                    updateStatus={updateStatus}
                 />
             ))}
             {hiddenTasksNumber > 0 && <li><i>({hiddenTasksNumber} hidden tasks)</i></li>}

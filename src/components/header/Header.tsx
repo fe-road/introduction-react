@@ -1,3 +1,5 @@
+import './header.css';
+
 interface Props {
     text: string;
 }
@@ -5,7 +7,7 @@ interface Props {
 const Header = ({ text }: Props) => {
     return (
         <header>
-            <h1>{text}</h1>
+            <h1 className='header'>{text}</h1>
         </header>
     );
 }

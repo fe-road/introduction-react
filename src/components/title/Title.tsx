@@ -1,10 +1,12 @@
+import './title.css';
+
 interface Props {
     text: string;
 }
 
 const Title = ({ text }: Props) => {
     return (
-        <h4>{text}</h4>
+        <h4 className='title'>{text}</h4>
     );
 }
 
