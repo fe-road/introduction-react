@@ -72,10 +72,10 @@ const TaskContainer = ({ items, hideAddButtons = false, setTasks }: Props) => {
 
       {hideAddButtons ? null : (
         <>
-          <button className="button" onClick={() => addItem(1)}>
+          <button className="w-1/2 rounded-sm border-2 p-1 bg-banana hover:bg-sky-700 hover:rounded-md md:w-1/4" onClick={() => addItem(1)}>
             Add task
           </button>
-          <button className="button" onClick={() => addItem(5)}>
+          <button className="w-1/2 rounded-sm border-2 p-1 bg-sky-500 hover:bg-sky-700 md:w-1/4" onClick={() => addItem(5)}>
             Add 5 tasks
           </button>
         </>

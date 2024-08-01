@@ -2,7 +2,8 @@ import { useState } from 'react';
 
 import { Task } from '../../models/TaskModel';
 
-import './task-item.css';
+// import './task-item.css';
+import './task-item.scss';
 
 interface Props {
   item: Task;
@@ -33,39 +34,39 @@ const TaskItem = ({ item, remove, updateLabel, updateStatus }: Props) => {
   };
 
   return (
-    <li>
+    <li className='task-item'>
       {isEditing ? (
         <>
           <div>
             <input
               type="text"
-              className={`task-input-label ${!label ? 'input-error' : ''}`}
+              className={`task-input-label ${!label ? 'input-error' : 'input-info'}`}
               value={label}
               onChange={changeLabel}
             />
           </div>
           <button
-            className="button small icon"
+            className="button button--small button--icon"
             disabled={!label}
             onClick={save}
           >
             <span className="fa-solid fa-check"></span>
           </button>
-          <button className="button small icon" onClick={cancelEdit}>
+          <button className="button button--small button--icon" onClick={cancelEdit}>
             <span className="fa-solid fa-xmark"></span>
           </button>
-          <button className="button small icon" onClick={() => remove(item.id)}>
+          <button className="button button--small button--icon" onClick={() => remove(item.id)}>
             <span className="fa-solid fa-trash"></span>
           </button>
         </>
       ) : (
         <>
           <p className="task-label">{item.label}</p>
-          <button className="button small icon" onClick={startEdit}>
+          <button className="button button--small button--icon" onClick={startEdit}>
             <span className="fa-solid fa-pencil"></span>
           </button>
           <button
-            className="button small icon"
+            className="button button--small button--icon"
             onClick={() => updateStatus(item.id, !item.completed)}
           >
             <span

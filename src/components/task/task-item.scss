@@ -1,0 +1,42 @@
+@import '../../variables.scss';
+
+@mixin inputState($color: $color-info) {
+    border-color: $color;
+    outline-color: $color;
+}
+
+// %input-state {
+//     border: 4px solid;
+// }
+
+.task-label,
+.task-input-label {
+  font-family: 'Montserrat', sans-serif;
+  margin-top: 16px;
+  margin-bottom: 0;
+}
+
+.input-error {
+    // @extend %input-state;
+    @include inputState($color-error);
+}
+
+.input-info {
+    // @extend %input-state;
+    @include inputState;
+}
+
+.input-success {
+    // @extend %input-state;
+    @include inputState($color-success);
+}
+
+// .task-item {
+//     height: 32px;
+//     transition: ease 0.2s height;
+
+//     &:hover {
+//         height: 40px;
+//         transition: ease 0.2s height;
+//     }
+// }

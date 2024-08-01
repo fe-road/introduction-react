@@ -15,7 +15,7 @@ const App = () => {
   const completedTasks = tasks.filter((elem) => elem.completed);
 
   return (
-    <div className="main-container">
+    <div className="py-2 px-4 bg-slate-100 h-screen dark:bg-slate-100">
       <Header text="Task List" />
       <Card
         title={
