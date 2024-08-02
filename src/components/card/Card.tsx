@@ -1,6 +1,9 @@
 import { ReactNode } from 'react';
+import MuiCard from '@mui/material/Card';
+import MuiCardContent from '@mui/material/CardContent';
+import MuiCardHeader from '@mui/material/CardHeader';
 
-import Title from '../title/Title';
+// import Title from '../title/Title';
 
 import './card.css';
 
@@ -11,10 +14,21 @@ interface Props {
 
 const Card = ({ title, children }: Props) => {
   return (
-    <article className="card">
-      <Title text={title} />
-      {children}
+    <article>
+        <MuiCard
+            className='card'
+            sx={{
+                border: 4,
+            }}
+        >
+            <MuiCardHeader title={title} />
+            <MuiCardContent>{children}</MuiCardContent>
+        </MuiCard>
     </article>
+    // <article className="card">
+    //   <Title text={title} />
+    //   {children}
+    // </article>
   );
 };
 
